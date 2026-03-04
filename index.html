@@ -125,6 +125,21 @@
       color: var(--ink);
       text-decoration: none;
     }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-calendly {
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-calendly:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
     .nav-cta {
       background: var(--accent);
       color: var(--white);
@@ -136,6 +151,7 @@
       transition: opacity 0.15s;
     }
     .nav-cta:hover { opacity: 0.85; }
+    @media (max-width: 480px) { .nav-calendly { display: none; } }
 
     /* ── Hero ── */
     .hero {
@@ -524,7 +540,10 @@
   <nav>
     <div class="nav-inner">
       <a class="logo" href="#">Highline Workflows</a>
-      <a class="nav-cta" href="#contact">Get in touch</a>
+      <div class="nav-actions">
+        <a class="nav-calendly" href="https://calendly.com/taylor-highlineworkflows/30min" target="_blank" rel="noopener">Book a call</a>
+        <a class="nav-cta" href="#contact">Get in touch</a>
+      </div>
     </div>
   </nav>
 
@@ -543,8 +562,8 @@
     </div>
     <div class="hero-visual" aria-hidden="true" id="flow-carousel">
       <div class="flow-slide active">
-        <div class="flow-title">New client inquery</div>
-        <div class="flow-step"><div class="icon icon-amber">📧</div>Inquery email arrives<span class="flow-label">Trigger</span></div>
+        <div class="flow-title">New client enquiry</div>
+        <div class="flow-step"><div class="icon icon-amber">📧</div>Enquiry email arrives<span class="flow-label">Trigger</span></div>
         <div class="flow-arrow">↓</div>
         <div class="flow-step"><div class="icon icon-green">🤖</div>AI extracts contact details<span class="flow-label">AI</span></div>
         <div class="flow-arrow">↓</div>
@@ -773,7 +792,7 @@
 
       function next() { goTo((current + 1) % slides.length); }
 
-      function start() { timer = setInterval(next, 8000); }
+      function start() { timer = setInterval(next, 6000); }
       function stop()  { clearInterval(timer); }
 
       dots.forEach(dot => {
