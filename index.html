@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Highline — Workflow Automation for Small Business</title>
+  <meta name="description" content="Highline helps small businesses find and automate the workflows slowing them down — so you can get back to doing what you love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #2b2e25;
+      --muted:   #6b7164;
+      --rule:    #ddddd5;
+      --surface: #f5f5f0;
+      --accent:  #258b5b;
+      --accent-light: #e8f5ef;
+      --amber:   #e5a251;
+      --lime:    #dbda7b;
+      --white:   #ffffff;
+      --radius:  10px;
+      --max:     1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--amber);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost {
+      color: var(--ink);
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--rule);
+      transition: border-color 0.15s;
+    }
+    .btn-ghost:hover { border-color: #8a8a7e; }
+
+    /* Hero visual */
+    .hero-visual {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .flow-step {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 0.875rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .flow-step .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .flow-step:nth-child(1) .icon { background: #faebd4; }
+    .flow-step:nth-child(2) .icon { background: #d4ede3; }
+    .flow-step:nth-child(3) .icon { background: #f0f0c5; }
+    .flow-step:nth-child(4) .icon { background: #e8ede6; }
+    .flow-arrow {
+      text-align: center;
+      color: var(--rule);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .flow-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    /* ── Section base ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ── Problems ── */
+    .problems { background: var(--ink); color: var(--white); }
+    .problems .section-label { color: var(--lime); }
+    .problems .section-title { color: var(--white); }
+    .problems .section-sub { color: #a8a89e; }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .problem-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .problem-card .p-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .problem-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .problem-card p { font-size: 0.875rem; color: #a8a89e; line-height: 1.6; }
+
+    /* ── How it works ── */
+    .how { background: var(--surface); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .step { position: relative; }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── Services ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .service-card .s-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── Contact ── */
+    .contact { background: var(--white); }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro .section-title { margin-bottom: 1rem; }
+    .contact-intro p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .contact-detail span:first-child { font-size: 1.1rem; }
+
+    /* ── Contact form ── */
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+    .form-field { margin-bottom: 1.25rem; }
+    .form-field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.65rem 0.875rem;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: #a8a89e; }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 139, 91, 0.12);
+    }
+    .form-field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 0.25rem;
+      transition: opacity 0.15s;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-success {
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .form-success .success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .form-success p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .form-error-msg {
+      font-size: 0.8rem;
+      color: var(--amber);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-copy { font-size: 0.85rem; color: var(--muted); }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem 3rem;
+        gap: 2.5rem;
+      }
+      .hero-visual { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="#">Highline Workflows</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Workflow Automation</span>
+      <h1>Get back to doing<br /><em>what you love</em></h1>
+      <p class="hero-sub">
+        Highline finds the repetitive, time-consuming work hiding in your business and automates it — so your day is spent on the work only you can do.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Start a conversation</a>
+        <a class="btn-ghost" href="#how">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="flow-step">
+        <div class="icon">📧</div>
+        New enquiry email received
+        <span class="flow-label">Trigger</span>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="icon">🤖</div>
+        AI extracts client details
+        <span class="flow-label">Automate</span>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="icon">📋</div>
+        CRM record created
+        <span class="flow-label">Integrate</span>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="icon">✅</div>
+        Follow-up scheduled
+        <span class="flow-label">Done</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problems -->
+  <section class="problems">
+    <div class="section-inner">
+      <p class="section-label">Sound familiar?</p>
+      <h2 class="section-title">The daily grind eating your time</h2>
+      <p class="section-sub">
+        Most small business owners spend hours each week on work that could run itself. Here's what we hear most often.
+      </p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="p-icon">⏱️</div>
+          <h3>Manual data entry</h3>
+          <p>Copying information between apps, spreadsheets, and inboxes — over and over.</p>
+        </div>
+        <div class="problem-card">
+          <div class="p-icon">🔁</div>
+          <h3>Repetitive follow-ups</h3>
+          <p>Chasing invoices, sending reminders, and responding to the same questions daily.</p>
+        </div>
+        <div class="problem-card">
+          <div class="p-icon">🗂️</div>
+          <h3>Disconnected tools</h3>
+          <p>Your CRM, email, accounting, and calendar don't talk to each other.</p>
+        </div>
+        <div class="problem-card">
+          <div class="p-icon">😓</div>
+          <h3>No time to grow</h3>
+          <p>Operational busywork crowds out the strategic work that actually moves the needle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how" id="how">
+    <div class="section-inner">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Simple, bespoke, and built for you</h2>
+      <p class="section-sub">
+        No off-the-shelf templates. Every automation is designed around how your business actually works.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Discovery</h3>
+          <p>We map out your day-to-day operations together and identify exactly where time is being lost.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Design</h3>
+          <p>We design a workflow that fits how you already work — no ripping out tools you rely on.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Build</h3>
+          <p>Automations are built, tested, and refined until they run flawlessly in the background.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Support</h3>
+          <p>We stay with you — monitoring, tweaking, and adding new automations as your business grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section>
+    <div class="section-inner">
+      <p class="section-label">What we do</p>
+      <h2 class="section-title">Automation that fits your business</h2>
+      <p class="section-sub">From a single workflow to a fully connected operating system for your business.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="s-icon">🔗</div>
+          <h3>App Integration</h3>
+          <p>Connect your existing tools so data flows automatically between them — no manual syncing required.</p>
+        </div>
+        <div class="service-card">
+          <div class="s-icon">🤖</div>
+          <h3>AI-Powered Workflows</h3>
+          <p>Put AI to work on real tasks: drafting responses, classifying enquiries, summarising documents.</p>
+        </div>
+        <div class="service-card">
+          <div class="s-icon">📊</div>
+          <h3>Reporting & Alerts</h3>
+          <p>Automated reports and real-time alerts so you always know what's happening without logging in.</p>
+        </div>
+        <div class="service-card">
+          <div class="s-icon">🛠️</div>
+          <h3>Ongoing Optimisation</h3>
+          <p>As your business evolves, your automations evolve with it. We're a long-term partner, not a one-off job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <div class="contact-wrap">
+        <div class="contact-intro">
+          <p class="section-label">Let's talk</p>
+          <h2 class="section-title">Tell us about your business</h2>
+          <p>
+            Fill in the form and we'll get back to you within one business day. No hard sell — just an honest conversation about where automation could give you your time back.
+          </p>
+          <div class="contact-detail"><span>📍</span><span>Serving small businesses nationwide</span></div>
+          <div class="contact-detail"><span>⏱️</span><span>Response within one business day</span></div>
+          <div class="contact-detail"><span>💬</span><span>Free discovery call, no commitment</span></div>
+        </div>
+
+        <div class="contact-form" id="contact-form-wrap">
+          <form id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="f-name">My name is</label>
+              <input id="f-name" name="name" type="text" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-field">
+              <label for="f-contact">Contact me at</label>
+              <input id="f-contact" name="contact" type="text" placeholder="Email or phone number" required />
+            </div>
+            <div class="form-field">
+              <label for="f-business">My business is</label>
+              <input id="f-business" name="business" type="text" placeholder="Business or website" required />
+            </div>
+            <div class="form-field">
+              <label for="f-message">I want to talk about</label>
+              <textarea id="f-message" name="message" placeholder="How I can get back to doing what I love by automating the things I don't love." required></textarea>
+            </div>
+            <input name="website" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+            <button class="form-submit" type="submit">Send message →</button>
+            <p class="form-error-msg" id="form-error" hidden></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-logo">Highline</span>
+    <p class="footer-copy">&copy; 2026 Highline Workflows. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      const wrap = document.getElementById('contact-form-wrap');
+      const errorEl = document.getElementById('form-error');
+      const btn = form.querySelector('.form-submit');
+      if (form.website.value) return;
+      const fields = ['name', 'contact', 'business', 'message'];
+      for (const name of fields) {
+        if (!form[name].value.trim()) {
+          form[name].focus();
+          return;
+        }
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      errorEl.hidden = true;
+
+      try {
+        const res = await fetch('https://app.highlineworkflows.com/webhook/495bb450-6dfa-4036-b6e9-4cada937e074', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value.trim(),
+            contact: form.contact.value.trim(),
+            business: form.business.value.trim(),
+            message: form.message.value.trim(),
+          }),
+        });
+
+        if (!res.ok) throw new Error('server');
+
+        wrap.innerHTML = `
+          <div class="form-success">
+            <div class="success-icon">✦</div>
+            <h3>We'll be in touch soon</h3>
+            <p>Thanks for reaching out. We'll get back to you within one business day.</p>
+          </div>`;
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Send message →';
+        errorEl.textContent = 'Something went wrong — please try again or email us directly.';
+        errorEl.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>
