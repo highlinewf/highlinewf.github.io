@@ -438,6 +438,10 @@
       margin-top: 0.75rem;
       text-align: center;
     }
+    .form-error-msg a {
+      color: var(--amber);
+      text-underline-offset: 2px;
+    }
 
     /* ── Footer ── */
     footer {
@@ -446,12 +450,21 @@
       text-align: center;
     }
     .footer-copy { font-size: 0.85rem; color: var(--muted); }
+    .footer-email {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 2px;
+      margin-bottom: 0.6rem;
+    }
+    .footer-email:hover { text-decoration: underline; }
     .footer-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
       font-weight: 600;
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     /* ── Responsive ── */
@@ -659,7 +672,8 @@
 
   <!-- Footer -->
   <footer>
-    <span class="footer-logo">Highline</span>
+    <span class="footer-logo">Highline Workflows</span>
+    <a class="footer-email" href="mailto:hello@highlineworkflows.com">hello@highlineworkflows.com</a>
     <p class="footer-copy">&copy; 2026 Highline Workflows. All rights reserved.</p>
   </footer>
 
@@ -706,7 +720,7 @@
       } catch {
         btn.disabled = false;
         btn.textContent = 'Send message →';
-        errorEl.textContent = `Something went wrong — please try again or <a href="mailto:hello@highlineworkflows.com">email us directly.</a>`;
+        errorEl.innerHTML = `Something went wrong — please try again or <a href="mailto:hello@highlineworkflows.com">email us directly</a>.`;
         errorEl.hidden = false;
       }
     });
